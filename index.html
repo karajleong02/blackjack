@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name = "viewport" content = "width=device-width, initial-scale=1.0">
+        <title>Blackjack</title>
+        <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" integrity="sha256-46qynGAkLSFpVbEBog43gvNhfrOj+BmwXdxFgVK/Kvc=" crossorigin="anonymous" /> 
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,900|Source+Sans+Pro:300,900&display=swap" rel="stylesheet"> 
+        <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'> -->
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <header>
+            <h1>Blackjack</h1>
+            <nav class = "nav">
+                <button class = "nav-butt" aria-label = "insturctions button">
+                    <a href = "" class = "nav__link">Instructions</a>
+                </button>
+                <button class = "nav-butt" aria-label = "logout button">
+                    <a href = "#log-in" class = "nav__link">Logout</a>
+                </button>
+            </nav>
+        </header>
+
+        <!-- Login Page -->
+        <section class="login" id = "log-in">
+            <h1 class="page__title page__title--login">
+                <bold>Login</bold>
+            </h1>
+            <div>
+                <label for="username">Username:</label>
+                <input type="text" name="username" id="username" required>
+            </div>
+            <div>
+                <label for="password">Password:</label>
+                <input type="text" name="password" id="password" required>
+            </div>
+            <a href = #sign-up class = "signup__link">Click here to sign up</a>
+            <div>
+                <input type = "submit">
+            </div>
+        </section>
+
+         <!-- Sign Up Page -->
+         <section class="signup" id = "sign-up">
+            <h1 class="page__title page__title--signup">
+                <bold>Sign up</bold>
+            </h1>
+            <div>
+                <label for="username">Username:</label>
+                <input type="text" name="username" id="username" required>
+            </div>
+            <div>
+                <label for="password">Password*:</label>
+                <input type="text" name="password" id="password" required>
+            </div>
+            <p><i>*must be at least 8 characters long</i></p>
+            <div>
+                <input type = "submit">
+            </div>
+        </section>
+
+    </body>
+</html>
