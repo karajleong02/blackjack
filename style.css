@@ -26,3 +26,8 @@
         --fs-body: 1.125rem;
     }
 }
+
+.page__title--login {
+    /* color: var(--clr-accent); */
+    font-size: var(--fs-h1);
+}
