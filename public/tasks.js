@@ -1,23 +1,23 @@
-var playerCards = [];
-var dealerCards = [];
+var playerCards = ["0", "0"];
+var dealerCards = ["0", "0"];
 var playerTotal = 0;
 var dealerTotal = 0;
 var stand = false;
 var deck;
+let deckID = "tplx2p8qeqdt";
+
+
 
 // add event listener for button
 window.addEventListener("DOMContentLoaded", domLoaded);
 
 function domLoaded() {
-    
-    
-
     newGame();
     document.getElementById("player_score").innerHTML = "Your Total: " + playerTotal;
     document.getElementById("dealer_score").innerHTML = "Dealer Total: " + dealerTotal;
 
     const drawBtn = document.getElementById("draw_button");
-    drawBtn.addEventListener("click", drawCards);
+    drawBtn.addEventListener("click", draw);
 
     const restartBtn = document.getElementById("restart_button");
     restartBtn.addEventListener("click", restartGame);
@@ -27,27 +27,23 @@ function domLoaded() {
 }
 
 function newGame() {
-    // var xhr = new XMLHttpRequest;
-    // xhr.addEventListener ("load", function() {
-    //     deck = xhr.response;
-    //     console.log(xhr.response);
-    // })
-    // xhr.responseType = "json";
-    // xhr.open("GET", "https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=6");
-    // xhr.send();
     
-    // var deckID = deck.deck_id;
-    // console.log(deck);
-    async function getISS() {
-        let response = await fetch("https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=6");
-        deck = await response.json();
-        let deckID = deck.deckID;
-    }
-    getISS();
+    let xhr = new XMLHttpRequest;
+    var cardid = document.getElementById("cardid");
+    xhr.addEventListener ("load", function() {
+        deckID = xhr.response.deck_id;
+        cardid.innerHTML = deckID;
+        deckID = (cardid.innerHTML);
+    })
+    xhr.responseType = "json";
+    xhr.open("GET", "https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=6");
+    xhr.send();
+    
 }
 
-function drawCards() {
-    if (!stand && playerCards.length < 7) {
+
+function draw() {
+    if (!stand && playerCards.length < 7 && playerTotal < 21) {
         playerDraw();
     } else {
         dealerDraw();
@@ -55,12 +51,33 @@ function drawCards() {
     checkWin();
 }
 
+function getCard(ind) {
+    
+    let xhr = new XMLHttpRequest;
+    xhr.addEventListener ("load", function() {
+        card = JSON.stringify(xhr.response.cards[0].value);
+        card = card.split("\"")[1];
+        if(!isNaN(parseInt(card))){
+            console.log("get here");
+            playerCards[ind] = parseInt(card);
+            playerTotal += playerCards[ind];
+            console.log(playerTotal);
+        }   
+        console.log(playerCards[ind]);
+    })
+    xhr.responseType = "json";
+    xhr.open("GET", "https://deckofcardsapi.com/api/deck/" + deckID + "/draw/?count=1");
+    xhr.send();
+    
+}
+
 function playerDraw() {
     let pInd = playerCards.length;
-    playerCards[pInd] = 1;
-    playerTotal += playerCards[pInd];
+    getCard(pInd);
+    // playerCards[pInd] = 1;
+    
     document.getElementById("player_score").innerHTML = "Your Total: " + playerTotal;
-    document.getElementById("p" + pInd).src = ""; //USE API TO GET THE PICTURE, DOES THE CONCATENATION WORK
+    //document.getElementById("p" + pInd).src = ""; //USE API TO GET THE PICTURE, DOES THE CONCATENATION WORK
     if(pInd > 7) {
         dealerDraw();
     }
