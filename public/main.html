@@ -4,9 +4,43 @@
         <title>Login</title>
         <!--import style sheet-->
         <link href="index.css" rel="stylesheet">
+        <script src ="tasks.js"></script>
     </head>
     <body>
-        <p>You made it!</p>
+        <header>
+            <h1>Blackjack</h1>
+            <nav class = "nav">
+                <button class = "nav-butt" aria-label = "instructions button">
+                    <a href = "#instructions" class = "nav__link">Instructions</a>
+                </button>
+                <button class = "nav-butt" aria-label = "logout button">
+                    <a href = "/login.html" class = "nav__link">Logout</a>
+                </button>
+            </nav>
+        </header>
+        <div id = "dealer">
+            <p id = "dealer_score">Dealer Total: 0</p>
+            <img src = "" class = "card_image" id = "d1">
+            <img src = "" class = "card_image" id = "d2">
+            <img src = "" class = "card_image" id = "d3">
+            <img src = "" class = "card_image" id = "d4">
+            <img src = "" class = "card_image" id = "d5">
+            <img src = "" class = "card_image" id = "d6">
+            <img src = "" class = "card_image" id = "d7">
+        </div>
+        <div id = "player">
+            <p id = "player_score">Your Total: 0</p>
+            <img src = "" class = "card_image" id = "p1">
+            <img src = "" class = "card_image" id = "p2">
+            <img src = "" class = "card_image" id = "p3">
+            <img src = "" class = "card_image" id = "p4">
+            <img src = "" class = "card_image" id = "p5">
+            <img src = "" class = "card_image" id = "p6">
+            <img src = "" class = "card_image" id = "p7">
+        </div>
+        <button class = "draw_button" id = "draw_button">Draw</button>
+        <button class = "stand_button" id = "stand_button">Stand</button>
+        <button class = "restart_button" id = "restart_button">New Game</button>
         
     </body>
 </html>
