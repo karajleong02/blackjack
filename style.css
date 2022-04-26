@@ -34,3 +34,7 @@
     text-align: center;
     font-family: var(--ff-primary);
 }
+
+#cardid {
+    display: none;
+}

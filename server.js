@@ -80,6 +80,7 @@ app.post("/attempt_login", function(req, res){
     // we check for the username and password to match.
     conn.query("select password from registeredusers where username = ?", [req.body.username], function (err, rows){
         if(err){
+            authenticated = false;
             res.json({success: false, message: "user doesn't exists"});
         }else{
             storedPassword = rows[0].password // rows is an array of objects e.g.: [ { password: '12345' } ]

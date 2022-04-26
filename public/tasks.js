@@ -17,14 +17,13 @@ function domLoaded() {
     document.getElementById("dealer_score").innerHTML = "Dealer Total: " + dealerTotal;
 
     const drawBtn = document.getElementById("draw_button");
-    drawBtn.addEventListener("click", draw);
+    drawBtn.addEventListener("click", playerDraw);
 
     const restartBtn = document.getElementById("restart_button");
     restartBtn.addEventListener("click", restartGame);
 
     const standBtn = document.getElementById("stand_button");
-    stand = true;
-    standBtn.addEventListener("click", draw);
+    standBtn.addEventListener("click", dealerDraw);
 }
 
 function newGame() {
@@ -43,15 +42,6 @@ function newGame() {
 }
 
 
-function draw() {
-    if (!stand && playerCards.length < 7 && playerTotal < 21) {
-        playerDraw();
-    } else {
-        dealerDraw();
-    }
-    checkWin();
-}
-
 function getCard(ind, isPlayer) { //for person 0 is player, 1 is dealer
     
     let xhr = new XMLHttpRequest;
@@ -59,14 +49,18 @@ function getCard(ind, isPlayer) { //for person 0 is player, 1 is dealer
         card = JSON.stringify(xhr.response.cards[0].value);
         card = card.split("\"")[1];
         if(!isNaN(parseInt(card))){
-            if (isPlayer) {
+            if (isPlayer == 0) {
                 playerCards[ind] = parseInt(card);
                 playerTotal += playerCards[ind];
+                document.getElementById("player_score").innerHTML = "Your Total: " + playerTotal;
+                 //document.getElementById("p" + pInd).src = ""; //USE API TO GET THE PICTURE, DOES THE CONCATENATION WORK
             } else {
+                console.log("hello");
                 dealerCards[ind] = parseInt(card);
                 dealerTotal += dealerCards[ind];
+                document.getElementById("dealer_score").innerHTML = "Dealer Total: " + dealerTotal;
+                document.getElementById("d" + dInd).src = "";
             }
-            
         }   
     })
     xhr.responseType = "json";
@@ -76,12 +70,15 @@ function getCard(ind, isPlayer) { //for person 0 is player, 1 is dealer
 }
 
 function playerDraw() {
-    let pInd = playerCards.length;
-    getCard(pInd, true);
     
-    document.getElementById("player_score").innerHTML = "Your Total: " + playerTotal;
-    //document.getElementById("p" + pInd).src = ""; //USE API TO GET THE PICTURE, DOES THE CONCATENATION WORK
-    if(pInd > 7) {
+    let pInd = playerCards.length;
+    if (playerCards.length < 7 && playerTotal < 21) {
+        getCard(pInd, 0);
+        
+       
+    } else if (playerTotal > 21) {
+        checkWin();
+    } else {
         dealerDraw();
     }
     
@@ -89,16 +86,17 @@ function playerDraw() {
 
 function dealerDraw() {
     //USE SOME SORT OF TIMER
+    console.log("gets here");
     while(dealerTotal < 17 && dealerCards.length < 7) {
+        
         let dInd = dealerCards.length;
         // dealerCards[dInd] = 1;
         // dealerTotal += dealerCards[dInd];
-        getCard(dInd, false);
+        getCard(dInd, 1);
         
-        document.getElementById("dealer_score").innerHTML = "Dealer Total: " + dealerTotal;
-        document.getElementById("d" + dInd).src = "";
+        
     }
-    
+    checkWin();
 }
 
 function restartGame() {
