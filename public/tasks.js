@@ -23,7 +23,8 @@ function domLoaded() {
     restartBtn.addEventListener("click", restartGame);
 
     const standBtn = document.getElementById("stand_button");
-    standBtn.addEventListener("click", playerStand);
+    stand = true;
+    standBtn.addEventListener("click", draw);
 }
 
 function newGame() {
@@ -51,19 +52,22 @@ function draw() {
     checkWin();
 }
 
-function getCard(ind) {
+function getCard(ind, isPlayer) { //for person 0 is player, 1 is dealer
     
     let xhr = new XMLHttpRequest;
     xhr.addEventListener ("load", function() {
         card = JSON.stringify(xhr.response.cards[0].value);
         card = card.split("\"")[1];
         if(!isNaN(parseInt(card))){
-            console.log("get here");
-            playerCards[ind] = parseInt(card);
-            playerTotal += playerCards[ind];
-            console.log(playerTotal);
+            if (isPlayer) {
+                playerCards[ind] = parseInt(card);
+                playerTotal += playerCards[ind];
+            } else {
+                dealerCards[ind] = parseInt(card);
+                dealerTotal += dealerCards[ind];
+            }
+            
         }   
-        console.log(playerCards[ind]);
     })
     xhr.responseType = "json";
     xhr.open("GET", "https://deckofcardsapi.com/api/deck/" + deckID + "/draw/?count=1");
@@ -73,8 +77,7 @@ function getCard(ind) {
 
 function playerDraw() {
     let pInd = playerCards.length;
-    getCard(pInd);
-    // playerCards[pInd] = 1;
+    getCard(pInd, true);
     
     document.getElementById("player_score").innerHTML = "Your Total: " + playerTotal;
     //document.getElementById("p" + pInd).src = ""; //USE API TO GET THE PICTURE, DOES THE CONCATENATION WORK
@@ -88,8 +91,10 @@ function dealerDraw() {
     //USE SOME SORT OF TIMER
     while(dealerTotal < 17 && dealerCards.length < 7) {
         let dInd = dealerCards.length;
-        dealerCards[dInd] = 1;
-        dealerTotal += dealerCards[dInd];
+        // dealerCards[dInd] = 1;
+        // dealerTotal += dealerCards[dInd];
+        getCard(dInd, false);
+        
         document.getElementById("dealer_score").innerHTML = "Dealer Total: " + dealerTotal;
         document.getElementById("d" + dInd).src = "";
     }
@@ -104,9 +109,9 @@ function restartGame() {
     //playerCards[0] = ;
     playerCards = [1, 1];
     dealerCards = [1, 1];
-    playerTotal = 2;
+    playerTotal = 0;
     document.getElementById("player_score").innerHTML = "Your Total: " + playerTotal;
-    dealerTotal = 2;
+    dealerTotal = 0;
     document.getElementById("dealer_score").innerHTML = "Dealer Total: " + dealerTotal;
     stand = false;
 }
