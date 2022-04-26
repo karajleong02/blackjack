@@ -1,5 +1,5 @@
-var playerCards = ["0", "0"];
-var dealerCards = ["0", "0"];
+var playerCards = [0];
+var dealerCards = [0];
 var playerTotal = 0;
 var dealerTotal = 0;
 var stand = false;
@@ -39,6 +39,11 @@ function newGame() {
     xhr.open("GET", "https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=6");
     xhr.send();
     
+    getCard(0, 0);
+    getCard(1, 0);
+    getCard(0, 1);
+    getCard(1, 1);
+   
 }
 
 
@@ -48,6 +53,7 @@ function getCard(ind, isPlayer) { //for person 0 is player, 1 is dealer
     xhr.addEventListener ("load", function() {
         card = JSON.stringify(xhr.response.cards[0].value);
         card = card.split("\"")[1];
+        img = JSON.stringify(xhr.response.cards[0].image);
         let val = 0;
         console.log("before if statement")
         if(!isNaN(parseInt(card))){ 
@@ -61,21 +67,22 @@ function getCard(ind, isPlayer) { //for person 0 is player, 1 is dealer
         }
         if (isPlayer == 0) {
             playerCards[ind] = val;
+            document.getElementById("p" + ind).src = img.split("\"")[1]; 
             playerTotal += playerCards[ind];
             document.getElementById("player_score").innerHTML = "Your Total: " + playerTotal;
-             //document.getElementById("p" + pInd).src = ""; //USE API TO GET THE PICTURE, DOES THE CONCATENATION WORK
         } else if (isPlayer == 1){
             if (dealerTotal < 17) {
                 dealerCards[ind] = val;
+                document.getElementById("d" + ind).src = img.split("\"")[1];
                 dealerTotal += dealerCards[ind];
                 document.getElementById("dealer_score").innerHTML = "Dealer Total: " + dealerTotal;
-                //document.getElementById("d" + dInd).src = "";
             }
         }  
     })
     xhr.responseType = "json";
     xhr.open("GET", "https://deckofcardsapi.com/api/deck/" + deckID + "/draw/?count=1");
     xhr.send();
+    
     
 }
 
@@ -96,18 +103,21 @@ function playerDraw() {
 
 function dealerDraw() {
     //USE SOME SORT OF TIMER
-   
-    for(i = 0; i < 7; i++) {
+    for(i = 2; i < 7; i++) {
         getCard(i, 1);
     }
     checkWin();
 }
 
 function restartGame() {
-    
-    //SHUFFLE DECK
 
     //RESET IMAGE SRCs 
+    for(ind = 0; ind < playerCards.length; ind ++) {
+        document.getElementById("p" + (ind+1)).src = ""; 
+    }
+    for(ind = 0; ind < dealerCards.length; ind++) {
+        document.getElementById("d" + (ind+1)).src = ""; 
+    }
     //playerCards[0] = ;
     playerCards = [1, 1];
     dealerCards = [1, 1];
