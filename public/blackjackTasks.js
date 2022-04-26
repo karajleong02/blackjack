@@ -68,12 +68,14 @@ function getCard(ind, isPlayer) { //for person 0 is player, 1 is dealer
         if (isPlayer == 0) {
             playerCards[ind] = val;
             document.getElementById("p" + ind).src = img.split("\"")[1]; 
+            document.getElementById("p" + (ind)).style.display = "initial";
             playerTotal += playerCards[ind];
             document.getElementById("player_score").innerHTML = "Your Total: " + playerTotal;
         } else if (isPlayer == 1){
             if (dealerTotal < 17) {
                 dealerCards[ind] = val;
                 document.getElementById("d" + ind).src = img.split("\"")[1];
+                document.getElementById("d" + (ind)).style.display = "initial";
                 dealerTotal += dealerCards[ind];
                 document.getElementById("dealer_score").innerHTML = "Dealer Total: " + dealerTotal;
             }
@@ -91,9 +93,6 @@ function playerDraw() {
     let pInd = playerCards.length;
     if (playerCards.length < 7 && playerTotal < 21) {
         getCard(pInd, 0);
-        
-       
-    } else if (playerTotal > 21) {
         checkWin();
     } else {
         dealerDraw();
@@ -113,14 +112,20 @@ function restartGame() {
 
     //RESET IMAGE SRCs 
     for(ind = 0; ind < playerCards.length; ind ++) {
-        document.getElementById("p" + (ind+1)).src = ""; 
+        document.getElementById("p" + (ind+1)).src = " "; 
+        document.getElementById("p" + (ind+1)).style.display = "none";
     }
     for(ind = 0; ind < dealerCards.length; ind++) {
-        document.getElementById("d" + (ind+1)).src = ""; 
+        document.getElementById("d" + (ind+1)).src = " "; 
+        document.getElementById("d" + (ind+1)).style.display = "none";
     }
-    //playerCards[0] = ;
-    playerCards = [1, 1];
-    dealerCards = [1, 1];
+    document.getElementById("winStatus").innerHTML = "";
+    playerCards = [0];
+    dealerCards = [0];
+    getCard(0, 0);
+    getCard(1, 0);
+    getCard(0, 1);
+    getCard(1, 1);
     playerTotal = 0;
     document.getElementById("player_score").innerHTML = "Your Total: " + playerTotal;
     dealerTotal = 0;
@@ -130,7 +135,19 @@ function restartGame() {
 
 
 function checkWin() {
-
+    if (playerTotal <21) {
+        console.log("");
+    } else {
+        if(playerTotal > 21) {
+            if (dealerTotal > 21) {
+                document.getElementById("winStatus").innerHTML = "Tie";
+            } else {
+                document.getElementById("winStatus").innerHTML = "You Lose!";
+            }
+        } else if (dealerTotal > 21 || playerTotal > dealerTotal){
+            document.getElementById("winStatus").innerHTML = "You Win!";
+        }
+    }
 }
 
 function playerStand() {
