@@ -35,3 +35,11 @@ body {
     text-align: center;
     font-family: var(--ff-primary);
 }
+
+#cardid {
+    display: none;
+}
+
+h1 {
+    font-family: var(--ff-primary);
+}
