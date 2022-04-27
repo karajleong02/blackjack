@@ -23,12 +23,10 @@ function domLoaded() {
     restartBtn.addEventListener("click", restartGame);
 
     const standBtn = document.getElementById("stand_button");
-<<<<<<< HEAD
-    standBtn.addEventListener("click", dealerDraw);
+
     standBtn.addEventListener("click", sendWin)
-=======
+
     standBtn.addEventListener("click", playerStand);
->>>>>>> 4e42a62cd1d5bcebd8eaf65c74c2f6ea77d6d8fd
 }
 
 function newGame() {
@@ -168,20 +166,10 @@ function sendWin() {
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded")
     // notice the query string is passed as a parameter in xhr.send()
     // this is to prevent the data from being easily sniffed
-    // xhr.send(query)
+    xhr.send();
     console.log("finished send win");
 }
 
-function responseHandler(){
-    let message = document.getElementById("message")
-    message.style.display = "block"
-    if (this.response.success){    
-        message.innerText = this.response.message
-    }else{
-        console.log(this.response.success)
-        message.innerText = this.response.message
-    }
-}
 
 function sendLose() {
     let xhr = new XMLHttpRequest
@@ -196,7 +184,7 @@ function sendLose() {
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded")
     // notice the query string is passed as a parameter in xhr.send()
     // this is to prevent the data from being easily sniffed
-    xhr.send(query)
+    xhr.send();
 }
 
 function sendTie() {
@@ -212,11 +200,20 @@ function sendTie() {
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded")
     // notice the query string is passed as a parameter in xhr.send()
     // this is to prevent the data from being easily sniffed
-    xhr.send(query)
+    xhr.send();
 }
 
+function responseHandler(){
+    if (this.response.success){    
+        console.log(this.response.success);
+    }else{
+        console.log(this.response.success);
+    }
+}
 function playerStand() {
     stand = true;
     dealerDraw();
     sendWin();
+    sendLose();
+    sendTie();
 }
