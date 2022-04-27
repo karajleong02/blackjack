@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Login</title>
+        <title>War</title>
         <!--import style sheet-->
         <link href="index.css" rel="stylesheet">
         <script src ="warTasks.js"></script>
@@ -22,28 +22,16 @@
             </nav>
         </header>
         <p id = "cardid">ID:</p>
-        <div id = "dealer">
-            <p id = "dealer_score">Dealer Total: 0</p>
-            <img src = "" class = "card_image" id = "d1">
-            <img src = "" class = "card_image" id = "d2">
-            <img src = "" class = "card_image" id = "d3">
-            <img src = "" class = "card_image" id = "d4">
-            <img src = "" class = "card_image" id = "d5">
-            <img src = "" class = "card_image" id = "d6">
-            <img src = "" class = "card_image" id = "d7">
+        <p id = "numWins">Current Win Streak: 0</p>
+        <div id = "computer">
+            <p id = "computer_score">Computer: 0</p>
+            <img src = "" class = "card_image" id = "c1">
         </div>
         <div id = "player">
-            <p id = "player_score">Your Total: 0</p>
+            <p id = "player_score">You: 0</p>
             <img src = "" class = "card_image" id = "p1">
-            <img src = "" class = "card_image" id = "p2">
-            <img src = "" class = "card_image" id = "p3">
-            <img src = "" class = "card_image" id = "p4">
-            <img src = "" class = "card_image" id = "p5">
-            <img src = "" class = "card_image" id = "p6">
-            <img src = "" class = "card_image" id = "p7">
         </div>
         <button class = "draw_button" id = "draw_button">Draw</button>
-        <button class = "stand_button" id = "stand_button">Stand</button>
         <button class = "restart_button" id = "restart_button">New Game</button>
         
     </body>
