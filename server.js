@@ -4,6 +4,8 @@ const { json } = require("express/lib/response");
 const bcrypt = require("bcryptjs")// for hashing passwords
 const costFactor = 10; // used for the alt
 let authenticated = false; // used to see if user is logged in
+let username = "";
+
 
 // let's make a connection to our mysql server
 const mysql = require("mysql2")
@@ -11,7 +13,7 @@ const mysql = require("mysql2")
 const conn = mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "KJ2002joy",
+    password: "Linhj420",
     database: "CS2803"
 })
 
@@ -62,8 +64,8 @@ app.post("/register", function(req, res){
                 else{
                     // we create a password hash before storing the password
                     passwordHash = bcrypt.hashSync(req.body.password, costFactor);
-                    insertUser = "insert into registeredUsers values(?, ?)"
-                    conn.query(insertUser, [req.body.username, passwordHash], function(err, rows){
+                    insertUser = "insert into registeredUsers values(?, ?, ?, ?, ?, ?)"
+                    conn.query(insertUser, [req.body.username, passwordHash, 0, 0, 0, 0], function(err, rows){
                         if (err){
                             res.json({success: false, message: "server error"})
                         }
@@ -74,6 +76,8 @@ app.post("/register", function(req, res){
                 }
             });
 })
+
+app.post
 
 // post to route "attempt login"
 app.post("/attempt_login", function(req, res){
