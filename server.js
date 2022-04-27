@@ -29,7 +29,6 @@ conn.connect(function(err){
 const app = express();
 username="ronnie"
 password="12345"
-
 // Serve static files from the public dir
 // if you do not include this, then navigation to the localhost will not show anything
 app.use(express.static("public")); // will use the index.html file
@@ -77,20 +76,38 @@ app.post("/register", function(req, res){
             });
 })
 
-app.post
-
+// app.post("/sendwin", function(req, res){
+//     conn.query("update registeredUsers set 'bjwin' = 'bjwin' + 1 where username = ?",[username], function (err, rows){
+//         if(err) {
+//             res.json({message: "failed"});
+//         } else {
+//             res.json({message: "success"});
+//         }
+// })
+app.post("/sendwin", function(req,res) {
+    conn.query("update registeredUsers set bjwin = bjwin + 1 where username = ?",[username], function (err, rows) {
+        console.log("got here");
+        if(err) {
+            res.json({success: false, message:"false"});
+        } else {
+            res.json({success: true, message: "true"});
+        }
+    })
+})
 // post to route "attempt login"
 app.post("/attempt_login", function(req, res){
     // we check for the username and password to match.
     conn.query("select password from registeredusers where username = ?", [req.body.username], function (err, rows){
         if(err){
             authenticated = false;
+            username = ""
             res.json({success: false, message: "user doesn't exists"});
         }else{
             storedPassword = rows[0].password // rows is an array of objects e.g.: [ { password: '12345' } ]
             // bcrypt.compareSync let's us compare the plaintext password to the hashed password we stored in our database
             if (bcrypt.compareSync(req.body.password, storedPassword)){
                 authenticated = true;
+                username = req.body.username;
                 res.json({success: true, message: "logged in"})
             }else{
                 authenticated = false;

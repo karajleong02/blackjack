@@ -24,6 +24,7 @@ function domLoaded() {
 
     const standBtn = document.getElementById("stand_button");
     standBtn.addEventListener("click", dealerDraw);
+    standBtn.addEventListener("click", sendWin)
 }
 
 function newGame() {
@@ -91,7 +92,7 @@ function getCard(ind, isPlayer) { //for person 0 is player, 1 is dealer
 function playerDraw() {
     
     let pInd = playerCards.length;
-    if (playerCards.length < 7 && playerTotal < 21) {
+    if (playerCards.length < 7 && playerTotal < 21 && !stand) {
         getCard(pInd, 0);
         checkWin();
     } else {
@@ -141,16 +142,81 @@ function checkWin() {
         if(playerTotal > 21) {
             if (dealerTotal > 21) {
                 document.getElementById("winStatus").innerHTML = "Tie";
+                // sendTie();
             } else {
                 document.getElementById("winStatus").innerHTML = "You Lose!";
+                // sendLose();
             }
         } else if (dealerTotal > 21 || playerTotal > dealerTotal){
             document.getElementById("winStatus").innerHTML = "You Win!";
+            sendWin();
         }
     }
+}
+
+function sendWin() {
+    console.log("got to send win here");
+    let xhr = new XMLHttpRequest
+    xhr.addEventListener("load", responseHandler)
+
+    // when submitting a GET request, the query string is appended to URL
+    // but in a POST request, do not attach the query string to the url
+    // instead pass it as a parameter in xhr.send()
+    url = `/sendWin`
+    xhr.responseType = "json";   
+    xhr.open("POST", url)
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded")
+    // notice the query string is passed as a parameter in xhr.send()
+    // this is to prevent the data from being easily sniffed
+    // xhr.send(query)
+    console.log("finished send win");
+}
+
+function responseHandler(){
+    let message = document.getElementById("message")
+    message.style.display = "block"
+    if (this.response.success){    
+        message.innerText = this.response.message
+    }else{
+        console.log(this.response.success)
+        message.innerText = this.response.message
+    }
+}
+
+function sendLose() {
+    let xhr = new XMLHttpRequest
+    xhr.addEventListener("load", responseHandler)
+
+    // when submitting a GET request, the query string is appended to URL
+    // but in a POST request, do not attach the query string to the url
+    // instead pass it as a parameter in xhr.send()
+    url = `/sendLose`
+    xhr.responseType = "json";   
+    xhr.open("POST", url)
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded")
+    // notice the query string is passed as a parameter in xhr.send()
+    // this is to prevent the data from being easily sniffed
+    xhr.send(query)
+}
+
+function sendTie() {
+    let xhr = new XMLHttpRequest
+    xhr.addEventListener("load", responseHandler)
+
+    // when submitting a GET request, the query string is appended to URL
+    // but in a POST request, do not attach the query string to the url
+    // instead pass it as a parameter in xhr.send()
+    url = `/sendTie`
+    xhr.responseType = "json";   
+    xhr.open("POST", url)
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded")
+    // notice the query string is passed as a parameter in xhr.send()
+    // this is to prevent the data from being easily sniffed
+    xhr.send(query)
 }
 
 function playerStand() {
     stand = true;
     dealerDraw();
+    sendWin();
 }
