@@ -31,10 +31,10 @@ function responseHandler(){
     let message = document.getElementById("message")
     message.style.display = "block"
     if (this.response.success){    
-        console.log(this.response.success);
+        console.log(this.response);
         message.innerText = this.response.message
     }else{
-        console.log(this.response.success)
+        console.log(this.response)
         message.innerText = this.response.message
     }
 }
