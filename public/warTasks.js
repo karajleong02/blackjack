@@ -90,7 +90,7 @@ function checkWin() {
    if (pc > dc) {
        console.log("win");
        wins++;
-       //sendWinStreak();
+       sendWinStreak();
    } else if (pc < dc) {
        console.log("lose");
        wins = 0;

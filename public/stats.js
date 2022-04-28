@@ -1,6 +1,4 @@
-// let xhr = new XMLHttpRequest
-// xhr.addEventListener("load", responseHandler)
-// xhr.open("GET", "/stats.html");
+
 window.addEventListener("load", function() {
     console.log("listener is called");
     let xhr = new XMLHttpRequest;
@@ -10,7 +8,7 @@ window.addEventListener("load", function() {
 });
 
 function responseHandler(){
-    const obj = JSON.parse(this.response);
+    let obj = JSON.parse(this.response);
     console.log(obj); 
     console.log(obj.bjwin);
     document.getElementById("username").innerHTML = obj.username;

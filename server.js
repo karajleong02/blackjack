@@ -12,7 +12,7 @@ const mysql = require("mysql2")
 const conn = mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "KJ2002joy",
+    password: "Linhj420",
     database: "CS2803"
 })
 
@@ -150,6 +150,7 @@ app.post("/attempt_login", function(req, res){
 
 app.get("/stats", function(req, res){
     console.log("got to get stats");
+    console.log(authenticated);
     if(authenticated){
         console.log("authenticated stats");
         // res.sendFile(__dirname + "/public/" + "stats.html");
@@ -164,7 +165,9 @@ app.get("/stats", function(req, res){
             }
         })
     }else{
-        res.sendFile(__dirname + "/public/" + "main.html");
+        console.log("not workign");
+        res.json({sucess: false});
+        // res.sendFile(__dirname + "/public/" + "main.html");
     }
 })
 
