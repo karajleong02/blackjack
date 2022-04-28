@@ -5,10 +5,11 @@
     --fw-reg: 300;
     --fw-bold: 900;
     
-    --clr-light: #dce6ec;
-    --clr-dark: #333A56;
+    --clr-light: #F9EBB6;
+    --clr-dark: #282727;
     --clr-accent: #F6CB5A;
-    --clor-white: #ecf4f7;
+    --clr-white: #F3F4F4;
+    --clr-black: #000000;
     
     --fs-h1: 3rem;
     --fs-h2: 2.25rem;
@@ -42,4 +43,88 @@ body {
 
 h1 {
     font-family: var(--ff-primary);
+    color: var(--clr-accent);
+    font-weight: 900;
+}
+
+body {
+    background-color: var(--clr-white);
+}
+.nav {
+    position: fixed;
+    background: var(--clr-dark);
+    color: var(--clr-light);
+    top: 0;
+    bottom: 200;
+    right: 0;
+    left:0;
+    z-index: 100;
+}
+
+.nav-butt {
+    float: right;
+    background-color: var(--clr-light);
+    border: none;
+    color: var(--clr-black);
+    padding: 15px  20px;
+    text-decoration: none;
+    text-align: center;
+    font-size: var(--fs-body);
+    margin: 15px 20px 15px;
+}
+
+.title {
+    justify-self: start;
+    align-self: center;
+    margin-left: 20px;
+}
+
+.nav {
+    display: grid;
+    grid-template-columns: 1fr 200px;
+    grid-template-areas: "title nav-butt nav-butt nav-butt";
+    grid-column-gap: 2em;
+}
+
+
+.game {
+    margin: 50px;
+    background-color: var(--clr-dark);
+    display: grid;
+    grid-template-areas:
+        "winStatus winStatus"
+        "dealer player"
+        "draw_button stand_button";
+        
+}
+
+.dealer, .player {
+    justify-self: center;
+    flex-wrap: wrap;
+    color: var(--clr-white);
+}
+
+.dealer {
+    grid-template-areas: 
+        "dealer_score dealer_score"
+        "card_imageD card_imageD"
+        "card_imageD card_imageD";
+}
+
+.player {
+    grid-template-areas: 
+        "dealer_score dealer_score"
+        "card_imageD card_imageD"
+        "card_imageD card_imageD";
+}
+
+.card_imageD, .card_imageP {
+    max-width: 226px;
+    max-height: 314px;
+}
+
+.draw_button, .stand_button {
+    margin: 10px;
+    border: none;
+    background-color: var(--clr-light);
 }
