@@ -133,6 +133,23 @@ app.post("/attempt_login", function(req, res){
     })  
 })
 
+
+app.get("/stats", function(req, res){
+    if(authenticated){
+        conn.query("select bjwin, bjlose, bjtotals, warstreak from registeredUsers where usuername = ?", [username], function (err, rows) {
+            if (err) {
+                res.json({sucess: false});
+            } else {
+                res.send("<p>nice</p>")
+                console.log(res.data);
+            }
+        })
+    }else{
+        res.send("<p>not logged in <p><a href='/'>login page</a>")
+    }
+})
+
+
 // if the user navigates to localhost:3000/main, then the main page will be loaded.
 app.get("/main", function(req, res){
     if(authenticated){

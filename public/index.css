@@ -32,9 +32,10 @@
 
 body {
     margin: 0;
-    padding: 0 0 20px;
+    padding: 25 0 20px;
     text-align: center;
     font-family: var(--ff-primary);
+    background-color: var(--clr-white);
 }
 
 #cardid {
@@ -47,9 +48,6 @@ h1 {
     font-weight: 900;
 }
 
-body {
-    background-color: var(--clr-white);
-}
 .nav {
     position: fixed;
     background: var(--clr-dark);
@@ -127,4 +125,8 @@ body {
     margin: 10px;
     border: none;
     background-color: var(--clr-light);
+}
+
+td {
+    padding: 25px;
 }
