@@ -4,7 +4,11 @@
         <title>War</title>
         <!--import style sheet-->
         <link href="index.css" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com"> 
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>    
+        <link href="https://fonts.googleapis.com/css2?family=Lexend+Mega:wght@600;800&display=swap" rel="stylesheet">
         <script src ="warTasks.js"></script>
+
     </head>
     <body>
         <header>
@@ -14,7 +18,7 @@
                     <a href = "/main.html" class = "nav__link">Blackjack</a>
                 </button>
                 <button class = "nav-butt" aria-label = "instructions button">
-                    <a href = "#instructions" class = "nav__link">Instructions</a>
+                    <a href = "/warInstructions.html" class = "nav__link">Instructions</a>
                 </button>
                 <button class = "nav-butt" aria-label= "stats bututon">
                     <a href = "/stats.html" class = "nav__link">Stats</a>
@@ -24,22 +28,23 @@
                 </button>
             </nav>
         </header>
-        <h2>War</h2>
         <p id = "cardid">ID:</p>
-        <p id = "numWins">Current Win Streak: 0</p>
-        <div class = "war">
-            <div class = "dealer" id = "computer">
-                <p id = "computer_score">Computer: 0</p>
-                <img src = "cardBack.png" class = "card_imageD" id = "c1">
+        <div class = "game" id = "warGame">
+            <h2 class = "gameTitle">War</h2>
+            <p class = "numWins" id = "numWins">Current Win Streak: 0</p>
+            <div class = "war">
+                <div class = "player" id = "player">
+                    <p id = "player_score">You: 0</p>
+                    <img src = "cardBack.png" class = "card_imageP" id = "p1">
+                </div>
+                <div class = "dealer" id = "computer">
+                    <p id = "computer_score">Computer: 0</p>
+                    <img src = "cardBack.png" class = "card_imageD" id = "c1">
+                </div>
+                <button class = "draw_button2" id = "draw_button">Draw</button>
+                <button class = "restart_btn" id = "restart_button">New Game</button>
             </div>
-            <div class = "player" id = "player">
-                <p id = "player_score">You: 0</p>
-                <img src = "cardBack.png" class = "card_imageP" id = "p1">
-            </div>
-            <button class = "draw_button2" id = "draw_button">Draw</button>
-            <button class = "restart_btn" id = "restart_button">New Game</button>
         </div>
-        
         
     </body>
 </html>

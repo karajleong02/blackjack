@@ -4,6 +4,9 @@
         <title>Blackjack</title>
         <!--import style sheet-->
         <link href="index.css" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com"> 
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>    
+        <link href="https://fonts.googleapis.com/css2?family=Lexend+Mega:wght@600;800&display=swap" rel="stylesheet">
         <script src ="blackjackTasks.js"></script>
     </head>
     <body>
@@ -26,31 +29,35 @@
         </header>
         <h2>Blackjack</h2>
         <p id = "cardid">ID:</p>
-        <p class = "winStatus" id = "winStatus">HOLD</p>
-        <div class = "game"> 
-            <div class = "dealer" id = "dealer">
-                <p class = "dealer_score" id = "dealer_score">Dealer Total: 0</p>
-                <img src = "cardBack.png" class = "card_imageD" id = "d1">
-                <img src = "" class = "card_imageD" id = "d2">
-                <img src = "" class = "card_imageD" id = "d3">
-                <img src = "" class = "card_imageD" id = "d4">
-                <img src = "" class = "card_imageD" id = "d5">
-                <img src = "" class = "card_imageD" id = "d6">
-                <img src = "" class = "card_imageD" id = "d7">
+        <div class = "game" id = "bjGame">
+            <h2 class = "gameTitle">Blackjack</h2>
+            <p class = "numWins" id = "winStatus">HOLD</p>
+            <div class = "blackjack"> 
+                <div class = "dealer" id = "dealer">
+                    <p class = "dealer_score" id = "dealer_score">Dealer Total: 0</p>
+                    <img src = "cardBack.png" class = "card_imageD" id = "d1">
+                    <img src = "" class = "card_imageD" id = "d2">
+                    <img src = "" class = "card_imageD" id = "d3">
+                    <img src = "" class = "card_imageD" id = "d4">
+                    <img src = "" class = "card_imageD" id = "d5">
+                    <img src = "" class = "card_imageD" id = "d6">
+                    <img src = "" class = "card_imageD" id = "d7">
+                </div>
+                <div class = "player" id = "player">
+                    <p class = "player_score" id = "player_score">Your Total: 0</p>
+                    <img src = "" class = "card_imageP" id = "p1">
+                    <img src = "" class = "card_imageP" id = "p2">
+                    <img src = "" class = "card_imageP" id = "p3">
+                    <img src = "" class = "card_imageP" id = "p4">
+                    <img src = "" class = "card_imageP" id = "p5">
+                    <img src = "" class = "card_imageP" id = "p6">
+                    <img src = "" class = "card_imageP" id = "p7">
+                </div>
+                <button class = "draw_button" id = "draw_button">Draw</button>
+                <button class = "stand_button" id = "stand_button">Stand</button>
             </div>
-            <div class = "player" id = "player">
-                <p class = "player_score" id = "player_score">Your Total: 0</p>
-                <img src = "" class = "card_imageP" id = "p1">
-                <img src = "" class = "card_imageP" id = "p2">
-                <img src = "" class = "card_imageP" id = "p3">
-                <img src = "" class = "card_imageP" id = "p4">
-                <img src = "" class = "card_imageP" id = "p5">
-                <img src = "" class = "card_imageP" id = "p6">
-                <img src = "" class = "card_imageP" id = "p7">
-            </div>
-            <button class = "draw_button" id = "draw_button">Draw</button>
-            <button class = "stand_button" id = "stand_button">Stand</button>
+            <button class = "restart_button" id = "restart_button">New Game</button>
         </div>
-        <button class = "restart_button" id = "restart_button">New Game</button>
+       
     </body>
 </html>
