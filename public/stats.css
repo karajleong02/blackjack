@@ -1,0 +1,115 @@
+:root {
+    --ff-primary: 'Lexend Mega', sans-serif;
+    --ff-secondary: 'Lexend Mega', sans-serif;
+    --fw-reg: 300;
+    --fw-bold: 900;
+    
+    --clr-light: #F9EBB6;
+    --clr-dark: #282727;
+    --clr-accent: #F6CB5A;
+    --clr-white: #F3F4F4;
+    --clr-black: #000000;
+    
+    --fs-h1: 3rem;
+    --fs-h2: 2rem;
+    --fs-h3: 1.25rem;
+    --fs-body: 1rem;
+
+    --bs: 0.25em 0.25em 0.75em rgba(0,0,0, 0.25), 0.125em 0.125em 0.25em rgba(0, 0, 0, .15); 
+}
+
+@media (min-width: 800px) {
+    :root {
+        --fs-h1: 4.5rem;
+        --fs-h2: 3.75rem;
+        --fs-h3: 1.5rem;
+        --fs-body: 1.125rem;
+    }
+}
+
+
+
+body {
+    margin: 20px 20px 20px;
+    padding: 25 0 20px;
+    text-align: center;
+    font-family: var(--ff-primary);
+    background-color: var(--clr-white);
+}
+
+
+h1 {
+    font-family: var(--ff-primary);
+    color: var(--clr-accent);
+    font-weight: 900;
+}
+
+.nav {
+    position: fixed;
+    background: var(--clr-dark);
+    color: var(--clr-light);
+    top: 0;
+    bottom: 200;
+    right: 0;
+    left:0;
+    z-index: 100;
+    font-size: 20px;
+}
+
+.nav-butt {
+    float: right;
+    background-color: var(--clr-light);
+    color: var(--clr-black);
+    padding: 15px  20px;
+    text-decoration: none;
+    text-align: center;
+    font-size: var(--fs-body);
+    margin: 15px 20px 15px;
+}
+
+.title {
+    font-size: var(--fs-h2);
+    margin: 0px 10px 0px;
+    justify-self: start;
+    align-self: stretch;
+}
+
+.nav {
+    display: grid;
+    grid-template-columns: 1fr 200px;
+    grid-template-areas: "title nav-butt nav-butt nav-butt nav-butt";
+    /* grid-column-gap: 1em; */
+}
+
+
+td {
+    padding: 25px;
+}
+a {
+    color: var(--clr-black);
+    text-decoration: none;
+    font-size: medium;
+}
+button {
+    font-family: var(--ff-secondary);
+    border: none;
+    font-size: medium;
+    border-radius: 1px;
+    font-weight: 600;
+}
+
+table {
+    margin-left: 200px;
+    margin-right: 100px;
+    border-collapse: collapse;
+}
+
+h2 {
+    margin: 150px 0px 0px;
+    font-size: var(--fs-h2);
+}
+
+th, td {
+    border: 1px solid;
+    
+}
