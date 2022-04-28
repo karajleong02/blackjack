@@ -1,3 +1,5 @@
+const { query } = require("express");
+
 var playerCard = "0";
 var dealerCard = "0";
 var wins = 0;
@@ -88,6 +90,7 @@ function checkWin() {
    if (pc > dc) {
        console.log("win");
        wins++;
+       sendWinStreak();
    } else if (pc < dc) {
        console.log("lose");
        wins = 0;
@@ -107,4 +110,22 @@ function sortVal(card) {
     } else {
         return parseInt(card);
     }
+}
+
+function sendWinStreak() {
+    console.log("got to send win here streak");
+    let xhr = new XMLHttpRequest
+    xhr.addEventListener("load", responseHandler)
+    query=`warstreak=${wins}`
+    // when submitting a GET request, the query string is appended to URL
+    // but in a POST request, do not attach the query string to the url
+    // instead pass it as a parameter in xhr.send()
+    url = `/sendWinStreak`
+    xhr.responseType = "json";   
+    xhr.open("POST", url)
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded")
+    // notice the query string is passed as a parameter in xhr.send()
+    // this is to prevent the data from being easily sniffed
+    xhr.send(query);
+    console.log("finished send win");
 }
