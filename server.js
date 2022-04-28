@@ -1,6 +1,6 @@
 const express = require("express");
 const res = require("express/lib/response");
-const { json } = require("express/lib/response");
+const { json, redirect } = require("express/lib/response");
 const bcrypt = require("bcryptjs")// for hashing passwords
 const costFactor = 10; // used for the alt
 let authenticated = false; // used to see if user is logged in
@@ -12,7 +12,7 @@ const mysql = require("mysql2")
 const conn = mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "KJ2002joy",
+    password: "Linhj420",
     database: "CS2803"
 })
 
@@ -135,17 +135,22 @@ app.post("/attempt_login", function(req, res){
 
 
 app.get("/stats", function(req, res){
+    console.log("got to get stats");
     if(authenticated){
-        conn.query("select bjwin, bjlose, bjtotals, warstreak from registeredUsers where usuername = ?", [username], function (err, rows) {
+        console.log("authenticated stats");
+        // res.sendFile(__dirname + "/public/" + "stats.html");
+        conn.query("select username, bjwin, bjlose, bjtotals, warstreak from registeredUsers where username = ?", [username], function (err, rows) {
             if (err) {
                 res.json({sucess: false});
             } else {
-                res.send("<p>nice</p>")
-                console.log(res.data);
+
+                console.log(rows[0]);
+                console.log(rows[0].bjwin);   
+                res.send(rows[0]);
             }
         })
     }else{
-        res.send("<p>not logged in <p><a href='/'>login page</a>")
+        res.sendFile(__dirname + "/public/" + "main.html");
     }
 })
 
