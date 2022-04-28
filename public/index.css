@@ -188,3 +188,11 @@ button {
     margin-left: 200px;
     margin-right: 200px;
 }
+
+ul {
+    list-style: none;
+}
+
+.instructions {
+    margin-top: 150px;
+}
