@@ -97,13 +97,8 @@ app.post("/register", function(req, res){
                 else{
                     // we create a password hash before storing the password
                     passwordHash = bcrypt.hashSync(req.body.password, costFactor);
-<<<<<<< HEAD
                     insertUser = "insert into registeredUsers values(?, ?, 0, 0, 0, 0)"
                     conn.query(insertUser, [req.body.username, passwordHash], function(err, rows){
-=======
-                    insertUser = "insert into registeredUsers values(?, ?, ?, ?, ?, ?)"
-                    conn.query(insertUser, [req.body.username, passwordHash, 0, 0, 0, 0], function(err, rows){
->>>>>>> 7c3526d8048c2c08080a0a1ff8aa6de21403414e
                         if (err){
                             res.json({success: false, message: "server error"})                           
                         }

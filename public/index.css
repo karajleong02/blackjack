@@ -31,7 +31,7 @@
 
 
 body {
-    margin: 0;
+    margin: 20px 20px 20px;
     padding: 25 0 20px;
     text-align: center;
     font-family: var(--ff-primary);
@@ -63,7 +63,6 @@ h1 {
 .nav-butt {
     float: right;
     background-color: var(--clr-light);
-    border: none;
     color: var(--clr-black);
     padding: 15px  20px;
     text-decoration: none;
@@ -81,7 +80,7 @@ h1 {
 .nav {
     display: grid;
     grid-template-columns: 1fr 200px;
-    grid-template-areas: "title nav-butt nav-butt nav-butt";
+    grid-template-areas: "title nav-butt nav-butt nav-butt nav-butt";
     grid-column-gap: 2em;
 }
 
@@ -91,10 +90,18 @@ h1 {
     background-color: var(--clr-dark);
     display: grid;
     grid-template-areas:
-        "winStatus winStatus"
         "dealer player"
         "draw_button stand_button";
         
+}
+
+.war {
+    margin: 50px;
+    background-color: var(--clr-dark);
+    display: grid;
+    grid-template-areas:
+        "dealer player"
+        "draw_button restart_button";
 }
 
 .dealer, .player {
@@ -122,16 +129,23 @@ h1 {
     max-height: 314px;
 }
 
-.draw_button, .stand_button {
-    margin: 10px;
-    border: none;
+.draw_button, .stand_button, .restart_btn, .draw_button2{
+    padding: 10px;
+    margin: 10px 150px;
     background-color: var(--clr-light);
+    font-size: medium;
 }
 
 td {
     padding: 25px;
-a {
+}
+a{
     color: var(--clr-black);
     text-decoration: none;
     font-size: medium;
+}
+button {
+    border: none;
+    font-size: medium;
+    border-radius: 1px;
 }
