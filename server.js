@@ -12,7 +12,7 @@ const mysql = require("mysql2")
 const conn = mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "Linhj420",
+    password: "KJ2002joy",
     database: "CS2803"
 })
 
@@ -97,14 +97,14 @@ app.post("/register", function(req, res){
                 else{
                     // we create a password hash before storing the password
                     passwordHash = bcrypt.hashSync(req.body.password, costFactor);
-                    insertUser = "insert into registeredUsers values(?, ?)"
-                    conn.query(insertUser, [req.body.username, passwordHash], function(err, rows){
+                    insertUser = "insert into registeredUsers values(?, ?, ?, ?, ?, ?)"
+                    conn.query(insertUser, [req.body.username, passwordHash, 0, 0, 0, 0], function(err, rows){
                         if (err){
                             res.json({success: false, message: "server error"})                           
                         }
                         else{
                             res.json({success: true, message: "user registered"})
-                            console.log("got here");
+                            console.log("got here 1å");
                         }
                     })
                 }
