@@ -4,24 +4,29 @@
         <title>Login</title>
         <!--import style sheet-->
         <link href="login.css" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com"> 
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>    
+        <link href="https://fonts.googleapis.com/css2?family=Lexend+Mega:wght@600;800&display=swap" rel="stylesheet">
         <script src="registration.js" defer></script>
     </head>
     <body>
         <div class = "registrationBox">
             <h1>Sign Up</h1> 
             <p class = "links">Please fill out the information below to register:</p>
-            <form>
-                <div class = "username">
-                    <label class = "label" for="username">Username:</label>
-                    <input class = "field" type="text" name="username" id="username">
-                </div>
-                <div class = "password">
-                    <label class = "label" for="password">Password:</label>
-                    <input class = "field" type="password" name="password" id="password" placeholder="password">
-                </div>
-                <div class = "password">
-                    <label class = "label" for="confirm_password">Confirm Password:</label>
-                    <input class = "field" type="password" name="confirm_password" id="confirm_password" placeholder="confirm password">
+            <form class = "form">
+                <div class = "fields">
+                    <div class = "username">
+                        <label class = "label" id = "label" for="username">Username:</label>
+                        <input class = "field" id = "field" type="text" name="username" id="username" placeholder="username">
+                    </div>
+                    <div class = "password">
+                        <label class = "label" id = "label" for="password">Password:</label>
+                        <input class = "field" id = "pField" type="password" name="password" id="password" placeholder="password">
+                    </div>
+                    <div class = "password">
+                        <label class = "label" id = "label" for="confirm_password">Confirm Password:</label>
+                        <input class = "field" id = "field" type="password" name="confirm_password" id="confirm_password" placeholder="confirm password">
+                    </div>
                 </div>
                 <div>
                 <input class = "submit" type="submit" value="Register" id="register">  

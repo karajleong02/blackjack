@@ -1,5 +1,4 @@
 
-
 var playerCard = "0";
 var dealerCard = "0";
 var wins = 0;
@@ -67,6 +66,7 @@ function getCard() { //for person 0 is player, 1 is dealer
 }
 
 function getCards() {
+    console.log("draw cards");
     getCard();
 }
 
@@ -90,7 +90,7 @@ function checkWin() {
    if (pc > dc) {
        console.log("win");
        wins++;
-       sendWinStreak();
+       //sendWinStreak();
    } else if (pc < dc) {
        console.log("lose");
        wins = 0;
