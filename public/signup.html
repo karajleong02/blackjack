@@ -3,32 +3,33 @@
     <head>
         <title>Login</title>
         <!--import style sheet-->
-        <link href="index.css" rel="stylesheet">
+        <link href="login.css" rel="stylesheet">
         <script src="registration.js" defer></script>
     </head>
     <body>
-        <h1>Sign Up</h1> 
-        <p>Please fill out the information below to register:</p>
-        <form>
-            <div>
-                <label for="username">Username:</label>
-                <input type="text" name="username" id="username">
-            </div>
-            <div>
-                <label for="password">Password:</label>
-                <input type="password" name="password" id="password" placeholder="password">
-            </div>
-            <div>
-                <label for="confirm_password">Confirm Password:</label>
-                <input type="password" name="confirm_password" id="confirm_password" placeholder="confirm password">
-            </div>
-            <div>
-              <input type="submit" value="Register" id="register">  
-            </div>
-        </form>
+        <div class = "registrationBox">
+            <h1>Sign Up</h1> 
+            <p class = "links">Please fill out the information below to register:</p>
+            <form>
+                <div class = "username">
+                    <label class = "label" for="username">Username:</label>
+                    <input class = "field" type="text" name="username" id="username">
+                </div>
+                <div class = "password">
+                    <label class = "label" for="password">Password:</label>
+                    <input class = "field" type="password" name="password" id="password" placeholder="password">
+                </div>
+                <div class = "password">
+                    <label class = "label" for="confirm_password">Confirm Password:</label>
+                    <input class = "field" type="password" name="confirm_password" id="confirm_password" placeholder="confirm password">
+                </div>
+                <div>
+                <input class = "submit" type="submit" value="Register" id="register">  
+                </div>
+            </form>
 
-        <p hidden id="message"></p>
-        <p><a href="/">Return to login page.</a></p>
-        
+            <p class = "links" hidden id="message"></p>
+            <p class = "links"><a href="/">Return to login page.</a></p>
+        </div>
     </body>
 </html>
