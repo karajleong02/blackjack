@@ -71,6 +71,8 @@ function getCard(ind, isPlayer) { //for person 0 is player, 1 is dealer
             document.getElementById("player_score").innerHTML = "Your Total: " + playerTotal;
         } else if (isPlayer == 1){
             console.log("in dealer drawing")
+            console.log(dealerTotal)
+            console.log(playerTotal);
             if (dealerTotal < 17) {
                 dealerCards[ind] = val;
                 document.getElementById("d" + ind).src = img.split("\"")[1];
@@ -92,21 +94,18 @@ function playerDraw() {
     let pInd = playerCards.length;
     if (playerCards.length < 7 && playerTotal < 21 && !stand) {
         getCard(pInd, 0);
-    } else {
-        checkWin();
-        dealerDraw();
     }
     
 }
 
 function dealerDraw() {
     //USE SOME SORT OF TIMER
-    checkWin();
+    console.log("calls dealer");
     for(i = 0; i < 7; i++) {
         getCard(i, 1);
     }
-    checkWin();
-}
+    console.log("before check win");
+}                           
 
 function restartGame() {
 
@@ -134,20 +133,28 @@ function restartGame() {
 
 
 function checkWin() {
-    if (playerTotal <21) {
-        console.log("");
+    if (playerTotal <= 21) {
+        console.log("player total is less than 21")
+        if (dealerTotal > playerTotal) {
+            console.log("player shoudl lose to dealer")
+            sendLose();
+        } else if (dealerTotal == playerTotal) {
+            console.log("player should tie");
+            sendTie();
+        } else {
+            console.log("player should win");
+            // sendWin();
+        }
     } else {
-        if(playerTotal > 21) {
-            if (dealerTotal > 21) {
-                document.getElementById("winStatus").innerHTML = "Tie";
-                // sendTie();
-            } else {
-                document.getElementById("winStatus").innerHTML = "You Lose!";
-                // sendLose();
-            }
+        console.log("player total is over 21 should lose");
+        if(playerTotal > 21 || dealerTotal > playerTotal) {
+            console.log("player should very much lose")
+            sendLose();
         } else if (dealerTotal > 21 || playerTotal > dealerTotal){
+            console.log(dealerTotal);
+
             document.getElementById("winStatus").innerHTML = "You Win!";
-            sendWin();
+            // sendWin();
         }
     }
 }
@@ -213,7 +220,5 @@ function responseHandler(){
 function playerStand() {
     stand = true;
     dealerDraw();
-    sendWin();
-    sendLose();
-    sendTie();
+    checkWin();
 }

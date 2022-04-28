@@ -1,4 +1,4 @@
-const { query } = require("express");
+
 
 var playerCard = "0";
 var dealerCard = "0";
@@ -128,4 +128,11 @@ function sendWinStreak() {
     // this is to prevent the data from being easily sniffed
     xhr.send(query);
     console.log("finished send win");
+}
+function responseHandler(){
+    if (this.response.success){    
+        console.log("worked");
+    }else{
+        console.log(this.response.success);
+    }
 }

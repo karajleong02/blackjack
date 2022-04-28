@@ -81,12 +81,16 @@ app.post("/sendTie", function(req, res) {
 })
 app.post("/sendWinStreak", function(req, res){
     console.log("got here sendwinstreak");
-        // we check to see if username is available
-        conn.query("update registeredUsers set warstreak = ? where warstreak < ? and username = ?", [req.body.warstreak, req.body.warstreak, username], function(err, rows){
+    console.log(req.body.warstreak);
+    var winstreak = JSON.stringify(req.body.warstreak);
+    console.log(winstreak);
+    
+    queryString = "update registeredUsers set warstreak = " + winstreak + " where warstreak < " + winstreak + " and username = ?";
+        conn.query(queryString, [username], function(err, rows){
             if(err){
                 res.json({success: false, message: "server error"});
             } else {
-                res.json({success: false, message: "server error"});
+                res.json({success: true, message: "server error"});
             }
     })
 })
