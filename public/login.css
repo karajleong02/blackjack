@@ -1,0 +1,77 @@
+:root {
+    --ff-primary: 'Source Sans Pro', sans-serif;
+    --ff-secondary: 'Source Code Pro', monospace;
+    
+    --fw-reg: 300;
+    --fw-bold: 900;
+    
+    --clr-light: #F9EBB6;
+    --clr-dark: #282727;
+    --clr-accent: #F6CB5A;
+    --clr-white: #F3F4F4;
+    --clr-black: #000000;
+    
+    --fs-h1: 3rem;
+    --fs-h2: 2.25rem;
+    --fs-h3: 1.25rem;
+    --fs-body: 1rem;
+
+    --bs: 0.25em 0.25em 0.75em rgba(0,0,0, 0.25), 0.125em 0.125em 0.25em rgba(0, 0, 0, .15); 
+}
+
+@media (min-width: 800px) {
+    :root {
+        --fs-h1: 4.5rem;
+        --fs-h2: 3.75rem;
+        --fs-h3: 1.5rem;
+        --fs-body: 1.125rem;
+    }
+}
+
+
+
+body {
+    margin: 0px;
+    padding: 0 0 20px;
+    text-align: center;
+    font-family: var(--ff-primary);
+    background-color: var(--clr-white);
+}
+h1 {
+    color: var(--clr-accent);
+    font-size: 96px;
+    margin: 0px;
+}
+.registrationBox {
+    border-radius: 72px;
+    margin: 100px 100px;
+    padding: 25px;
+    background-color: var(--clr-dark);
+}
+
+.username, .password {
+    display: grid;
+    grid-template-areas: "label field";
+    color: var(--clr-white);
+    padding: 23px;
+}
+
+.links {
+    color: var(--clr-white);
+    text-decoration: none;
+}
+
+a{
+    color: var(--clr-black);
+}
+
+.label {
+    font-size: var(--fs-h3);
+}
+
+.submit {
+    border: none;
+    background-color: var(--clr-light);
+    padding: 10px 15px;
+    font-size: medium;
+}

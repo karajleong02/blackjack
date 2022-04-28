@@ -3,31 +3,28 @@
     <head>
         <title>Login</title>
         <!--import style sheet-->
-        <link href="index.css" rel="stylesheet">
+        <link href="login.css" rel="stylesheet">
         <script src="index.js" defer></script>
     </head>
     <body>
-        <h1> Login </h1>
-        <form method="POST" action="/attempt_login">
-            <div>
-                <label for="username">Username:</label>
-                <input type="text" name="username" id="username" placeholder="username">
-            </div>
-            <div class="password">
-                <label for="password">Password:</label>
-                <input type="password" name="password", id="password" placeholder="password">
-            </div>
-            <div>
-                <input type="submit" value="login" id="login">
-            </div>
-        </form>
-        <p hidden id="message"></p>
-        <div>
-            <p>Not a user? <a href="signup">Register here</a></p>
+        <div class = "registrationBox">
+            <h1> Login </h1>
+            <form method="POST" action="/attempt_login">
+                <div class = "username">
+                    <label class = "label" for="username">Username:</label>
+                    <input class = "field" type="text" name="username" id="username" placeholder="username">
+                </div>
+                <div class="password">
+                    <label class = "label" for="password"> Password:</label>
+                    <input class = "field" type="password" name="password", id="password" placeholder="password">
+                </div>
+                <div>
+                    <input class = "submit" type="submit" value="Login" id="login">
+                </div>
+            </form>
+            <p class = "links" hidden id="message"></p>
+            <p class = "links">Not a user? <a href="/signup.html">Register here</a></p>
+            <p class = "links"><a href="/main.html">Main Page</a></p>
         </div>
-        <div>
-            <p><a href="main">Main Page</a></p>
-        </div>
-        
     </body>
 </html>
