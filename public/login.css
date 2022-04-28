@@ -1,6 +1,6 @@
 :root {
-    --ff-primary: 'Source Sans Pro', sans-serif;
-    --ff-secondary: 'Source Code Pro', monospace;
+    --ff-primary: 'Lexend Mega', sans-serif;
+    --ff-secondary: 'Lexend Mega', sans-serif;
     
     --fw-reg: 300;
     --fw-bold: 900;
@@ -28,8 +28,6 @@
     }
 }
 
-
-
 body {
     margin: 0px;
     padding: 0 0 20px;
@@ -51,6 +49,7 @@ h1 {
 
 .username, .password {
     display: grid;
+    grid-template-columns: 400px 300px;
     grid-template-areas: "label field";
     color: var(--clr-white);
     padding: 23px;
@@ -66,16 +65,33 @@ a{
 }
 
 .label {
+    padding-right: 10px;
     font-size: var(--fs-h3);
+    justify-self: right;
+}
+
+.field {
+    justify-self: left;
+    min-width: 200px;
 }
 
 .submit {
     border: none;
     background-color: var(--clr-light);
     padding: 10px 15px;
+    font-family: var(--ff-primary);
     font-size: medium;
 }
 
 button {
     border-radius: 1px;
+}
+
+.form {
+    justify-self: center;
+}
+
+.fields {
+    text-align: center;
+    padding-left: 210px;
 }

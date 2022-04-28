@@ -86,6 +86,7 @@ h1 {
 
 /* FIGURE OUT HOW TO CORRECTLY FORMAT ALL THE WORDS */
 .blackjack {
+    padding-bottom: 20px;
     background-color: var(--clr-dark);
     display: grid;
     grid-template-areas:
@@ -158,12 +159,13 @@ button {
     color: var(--clr-white);
     margin-left: 50px;
     margin-right: 50px;
-    margin-top: 180px;
+    
     padding: 20px;
     display: grid;
 }
 
 #warGame {
+    margin-top: 180px;
     grid-template-areas: "gameTitle" "numWins" "war";
 }
 .numWins{
@@ -174,6 +176,7 @@ button {
 }
 
 #bjGame {
+    margin-top: 120px;
     grid-template-areas: "gameTitle" "winStatus" "blackjack" "restart_button";
 }
 
