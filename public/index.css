@@ -1,7 +1,6 @@
 :root {
-    --ff-primary: 'Source Sans Pro', sans-serif;
-    --ff-secondary: 'Source Code Pro', monospace;
-    
+    --ff-primary: 'Lexend Mega', sans-serif;
+    --ff-secondary: 'Lexend Mega', sans-serif;
     --fw-reg: 300;
     --fw-bold: 900;
     
@@ -12,7 +11,7 @@
     --clr-black: #000000;
     
     --fs-h1: 3rem;
-    --fs-h2: 2.25rem;
+    --fs-h2: 2rem;
     --fs-h3: 1.25rem;
     --fs-body: 1rem;
 
@@ -72,21 +71,21 @@ h1 {
 }
 
 .title {
+    font-size: var(--fs-h2);
+    margin: 0px 10px 0px;
     justify-self: start;
-    align-self: center;
-    margin-left: 20px;
+    align-self: stretch;
 }
 
 .nav {
     display: grid;
     grid-template-columns: 1fr 200px;
     grid-template-areas: "title nav-butt nav-butt nav-butt nav-butt";
-    grid-column-gap: 2em;
+    /* grid-column-gap: 1em; */
 }
 
 /* FIGURE OUT HOW TO CORRECTLY FORMAT ALL THE WORDS */
-.game {
-    margin: 50px;
+.blackjack {
     background-color: var(--clr-dark);
     display: grid;
     grid-template-areas:
@@ -96,11 +95,10 @@ h1 {
 }
 
 .war {
-    margin: 50px;
     background-color: var(--clr-dark);
     display: grid;
     grid-template-areas:
-        "dealer player"
+        "player dealer"
         "draw_button restart_button";
 }
 
@@ -129,27 +127,64 @@ h1 {
     max-height: 314px;
 }
 
-.draw_button, .stand_button, .restart_btn, .draw_button2{
-    padding: 10px;
+.draw_button, .stand_button, .restart_btn, .draw_button2, .restart_button{
+    padding: 10px 20px;
     margin: 10px 150px;
     background-color: var(--clr-light);
     font-size: medium;
+    max-width: 150px;
+    justify-self: center;
 }
 
 td {
     padding: 25px;
 }
-<<<<<<< HEAD
 a {
-=======
-a{
->>>>>>> 0211413a9086d035d4797f953fc39b0d6354f08a
     color: var(--clr-black);
     text-decoration: none;
     font-size: medium;
 }
 button {
+    font-family: var(--ff-secondary);
     border: none;
     font-size: medium;
     border-radius: 1px;
+    font-weight: 600;
+}
+
+.game {
+    background-color: var(clr-dark);
+    color: var(--clr-white);
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-top: 180px;
+    padding: 20px;
+    display: grid;
+}
+
+#warGame {
+    grid-template-areas: "gameTitle" "numWins" "war";
+}
+.numWins{
+    background-color: var(--clr-dark);
+    font-weight: 800;
+    font-size: var(--fs-body);
+    margin: 0px;
+}
+
+#bjGame {
+    grid-template-areas: "gameTitle" "winStatus" "blackjack" "restart_button";
+}
+
+.gameTitle {
+    background-color:var(--clr-dark);
+    font-weight: 600;
+    font-size: var(--fs-h2);
+    margin: 0px;
+}
+
+.restart_button {
+    background-color: var(--clr-light);
+    margin-left: 200px;
+    margin-right: 200px;
 }
