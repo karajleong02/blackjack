@@ -6,7 +6,6 @@ const costFactor = 10; // used for the alt
 let authenticated = false; // used to see if user is logged in
 let username = "";
 
-
 // let's make a connection to our mysql server
 const mysql = require("mysql2")
 
@@ -48,8 +47,42 @@ app.get("/signup", function(req, res){
 // the middleware function express.urlencoded must be used for POST requests
 // the data will be in the req.body object
 app.use(express.urlencoded({extended:false}));
+app.post("/sendWin", function(req, res) {
+    console.log("got here");
+    conn.query("update registeredUsers set bjwin = bjwin + 1, bjtotals = bjtotals + 1 where username = ?", [username],  function(err, rows){
+        if(err) {
+            res.json({success: false, message: "server doesn't work"});
+        } else {
+            res.json({succes: true, message: "server does work"});
+        }
+    })
+})
+
+app.post("/sendLose", function(req, res) {
+    console.log("got here");
+    conn.query("update registeredUsers set bjlose = bjlose + 1, bjtotals = bjtotals + 1 where username = ?", [username],  function(err, rows){
+        if(err) {
+            res.json({success: false, message: "server doesn't work"});
+        } else {
+            res.json({succes: true, message: "server does work"});
+        }
+    })
+})
+
+app.post("/sendTie", function(req, res) {
+    console.log("got here");
+    conn.query("update registeredUsers set bjtotals = bjtotals + 1 where username = ?", [username],  function(err, rows){
+        if(err) {
+            res.json({success: false, message: "server doesn't work"});
+        } else {
+            res.json({succes: true, message: "server does work"});
+        }
+    })
+})
+
 
 app.post("/register", function(req, res){
+        console.log("got here");
             // we check to see if username is available
             usernameQuery = "Select username from registeredUsers where username  = ?"
             conn.query(usernameQuery, [req.body.username], function(err, rows){ 
@@ -64,33 +97,33 @@ app.post("/register", function(req, res){
                 else{
                     // we create a password hash before storing the password
                     passwordHash = bcrypt.hashSync(req.body.password, costFactor);
-                    insertUser = "insert into registeredUsers values(?, ?, ?, ?, ?, ?)"
-                    conn.query(insertUser, [req.body.username, passwordHash, 0, 0, 0, 0], function(err, rows){
+                    insertUser = "insert into registeredUsers values(?, ?)"
+                    conn.query(insertUser, [req.body.username, passwordHash], function(err, rows){
                         if (err){
-                            res.json({success: false, message: "server error"})
+                            res.json({success: false, message: "server error"})                           
                         }
                         else{
                             res.json({success: true, message: "user registered"})
+                            console.log("got here");
                         }
                     })
                 }
             });
 })
 
-app.post
-
 // post to route "attempt login"
 app.post("/attempt_login", function(req, res){
     // we check for the username and password to match.
     conn.query("select password from registeredusers where username = ?", [req.body.username], function (err, rows){
         if(err){
-            authenticated = false;
             res.json({success: false, message: "user doesn't exists"});
         }else{
             storedPassword = rows[0].password // rows is an array of objects e.g.: [ { password: '12345' } ]
             // bcrypt.compareSync let's us compare the plaintext password to the hashed password we stored in our database
             if (bcrypt.compareSync(req.body.password, storedPassword)){
+                username = req.body.username;
                 authenticated = true;
+                console.log(username);
                 res.json({success: true, message: "logged in"})
             }else{
                 authenticated = false;
